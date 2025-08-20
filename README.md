@@ -9,7 +9,6 @@ A domain-specific language that allows Arabic-speaking educators to write quizze
 | Name | Ahmad E. Herzallah |
 | Computer + OS | MacOS Sequoia (15.0) |
 | Responsibility | All components (solo project) |
-| Additional help | ChatGPT for ANTLR syntax clarification and including Arabic tokens in the grammar |
 
 ## Project Overview
 
