@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الحب</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.5; }
+    .quiz { max-width: 600px; margin: auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .question { padding: 10px; border: 1px solid #ccc; margin-bottom: 15px; border-radius: 5px; }
+    h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .choices { list-style: none; padding: 0; }
+    .choices li { margin-bottom: 5px; }
+    .right { background-color: #d4edda; }
+    .wrong { background-color: #f8d7da; }
+    .actions { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
+    button { padding: 5px 10px; border: 1px solid #999; background: #eee; cursor: pointer; }
+    button:hover { background: #ddd; }
+    #score { font-weight: bold; }
+  </style>
+</head>
+<body>
+<main class="quiz">
+<header><h1> اختبار الحب</h1></header>
+<section class="question" id="q1">
+<h2>من تحب أكثر</h2>
+<ul class="choices">
+<li><label><input type="radio" name="q1" value="1">أحمد</label></li>
+<li><label><input type="radio" name="q1" value="2">آيات</label></li>
+<li><label><input type="radio" name="q1" value="3" data-correct="true">الشيطان</label></li>
+</ul>
+</section>
+<div class="actions">
+<button id="checkBtn" type="button">تحقق من الإجابات</button>
+<button id="resetBtn" type="button">إعادة تعيين</button>
+<span id="score"></span>
+</div>
+
+<script>
+(function(){
+  const $$ = sel => document.querySelectorAll(sel);
+  const scoreEl = document.getElementById("score");
+
+  function clearMarks(q){
+    q.classList.remove('right','wrong');
+  }
+
+  document.getElementById("checkBtn").addEventListener("click", () => {
+    let total = 0, correct = 0;
+    $$(".question").forEach(q => {
+      clearMarks(q);
+      const selected = q.querySelector("input[type=radio]:checked");
+      if (selected) {
+        total++;
+        if (selected.dataset.correct === "true") {
+          q.classList.add("right");
+          correct++;
+        } else {
+          q.classList.add("wrong");
+        }
+      }
+    });
+    scoreEl.textContent = "النتيجة: " + correct + " / " + total;
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    $$(".question").forEach(q => {
+      clearMarks(q);
+      q.querySelectorAll("input[type=radio]").forEach(inp => inp.checked = false);
+    });
+    scoreEl.textContent = "";
+  });
+})();
+</script>
+</body>
+</html>
