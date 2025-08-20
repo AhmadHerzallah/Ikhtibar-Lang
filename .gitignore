@@ -132,11 +132,20 @@ dmypy.json
 .pyre/
 
 # ANTLR Generated Files
-# Keep the original .g4 grammar files, but ignore generated files
-ANTLR/gen/
+# Keep the original .g4 grammar files and custom Java source files
+# Ignore only the auto-generated files from ANTLR
+ANTLR/gen/*Grammar*.java
+ANTLR/gen/*.interp
+ANTLR/gen/*.tokens
 ANTLR/out/
 *.interp
 *.tokens
+
+# Keep custom Java source files (these are manually written)
+!ANTLR/gen/ARHtmlMain.java
+!ANTLR/gen/ARToHtmlVisitor.java
+!ANTLR/gen/ARValidationListener.java
+!ANTLR/gen/Tester.java
 
 # Java Compiled Files
 *.class
